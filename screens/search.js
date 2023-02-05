@@ -1,25 +1,22 @@
-import * as React from 'react';
+import {Component,useCallBack} from 'react';
 import { Text, View, StyleSheet} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-// import BottomTabNavigator.response from "./components/BottomTabNavigator";
+// import BottomTabNavigator from "./components/BottomTabNavigator";
 
-export default function SearchScreen (){
+export default class SearchScreen extends Component{
   
-  useFocusEffect(
-    React.useCallback(() => {
-      
-      alert('search')
-      return () => {
-        // alert('Screen was unfocused');
+  constructor() 
+  {
+    super()
+    // this.useFocusEffect.bind(this)s
+  }
 
-      };
-    }, []));
-    
+    render(){
     return (
     <View style={styles.container}>
       <Text style ={styles.text}>welcome to search screen</Text>
     </View>
-  );
+  );}
 }
 
 const styles = StyleSheet.create({
@@ -33,7 +30,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#f2c7ff',
         justifyContent:'center',
         alignItems:'center',
-        margin:15,
+        margin:10,
         borderRadius:10
     }
 })

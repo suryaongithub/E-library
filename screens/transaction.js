@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import * as Permissions from "expo-permissions";
+import { Camera, CameraType } from 'expo-camera';
 
 export default class TransactionScreen extends React.Component {
   constructor(props) {
@@ -17,9 +17,9 @@ export default class TransactionScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>{hasCameraPermissions ? scannedData : "requesting for camera pemission"}</Text>
-        <TouchableOpacity
+        <TouchableOpacity 
           style={styles.button}
-          onPress={this.getCameraPermission("scanner")}
+          onPress={()=>{this.getCameraPermission("scanner")}}
         >
           <Text style={styles.buttonText}>scan QR code</Text>
         </TouchableOpacity>
@@ -27,12 +27,15 @@ export default class TransactionScreen extends React.Component {
     );
   }
   getCameraPermission = async (domState) => {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    const { status } = await Camera.requestCameraPermissionsAsync()
+    console.log(status)
     this.setState({
       hasCameraPermissions: status === "granted",
       domState: domState,
       scanned: false,
     });
+    // console.log("gettin permissions")
+    // console.log(this.state.hasCameraPermissions)
   };
 }
 
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f2c7ff",
     // justifyContent: "center",
     alignItems: "center",
-    margin: 15,
+    margin: 10,
     borderRadius: 10,
     padding: 30,
   },
