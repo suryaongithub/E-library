@@ -27,11 +27,13 @@ const styles = StyleSheet.create({
     },
     container:{
         flex: 1,
-        backgroundColor:'#f2c7ff',
+        backgroundColor:'#FFFFD2',
         justifyContent:'center',
         alignItems:'center',
-        margin:10,
-        borderRadius:10
+        width:'110%',
+        borderColor: "black"
+        // margin:10,
+        // borderRadius:10
     }
 })
 
